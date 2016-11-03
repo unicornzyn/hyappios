@@ -17,6 +17,8 @@
     UIWebView *loadingview;
     NSString *website;
     NSString *websitescan;
+    AppDelegate *_appDelegate;
+    NSInteger showcc;
 }
 @end
 
@@ -54,8 +56,8 @@
     
     timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(timerAction:) userInfo:nil repeats:NO];
     */
-    website=@"http://yuyin.91huayi.net/";
-    websitescan=@"http://mobile.kjpt.91huayi.com/";
+    website=@"http://zshy.91huayi.com/";
+    websitescan=@"http://app.kjpt.91huayi.com/";
     self.view.backgroundColor=[UIColor whiteColor];
     //读取gif数据
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"loading" ofType:@"gif"];
@@ -78,25 +80,58 @@
     
     NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%@m/index.html",website]];
     //NSURL *url = [[NSURL alloc]initWithString:@"http://z.puddingz.com/t.html"];
-    NSMutableURLRequest * request=[NSMutableURLRequest requestWithURL:url];
+    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
+    [request setTimeoutInterval:10];
     [iwebview loadRequest:request];
     //[iwebview setHidden:YES];
     iwebview.delegate=self;
     [self.view addSubview:iwebview];
     
-    
+    showcc=0;
+    _appDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
+    //将要进入全屏的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterFullscreenScreen:) name:UIWindowDidBecomeVisibleNotification object:nil];
+    //将要退出全屏的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willExitFullscreenScreen:) name:UIWindowDidBecomeHiddenNotification object:nil];
+}
+//将要进入全屏
+-(void)willEnterFullscreenScreen:(NSNotification *)notification{
+    if (showcc<2) {
+        showcc++;
+    }else{
+        _appDelegate.isFull=YES;
+    }
+}
+//将要退出全屏
+-(void)willExitFullscreenScreen:(NSNotification *)notification{
+    _appDelegate.isFull=NO;
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+        SEL selector = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:[UIDevice currentDevice]];
+        int val =UIInterfaceOrientationPortrait;
+        [invocation setArgument:&val atIndex:2];
+        [invocation invoke];
+    }
+}
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    NSLog(@"mylog %@",[error debugDescription]);
+    if(error.code==-1009){
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"系统提示" message:@"数据加载失败,请检查网络状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView{
     [loadingview setHidden:NO];
     [webView setHidden:YES];
-    
-
+    _appDelegate.isFull=NO;
 }
--(void)webViewDidFinishLoad:(UIWebView *)webView{
-    JSContext *context=[webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    context[@"apploading"]=self;
 
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    //JSContext *context=[webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    //context[@"apploading"]=self;
     [loadingview setHidden:YES];
     [webView setHidden:NO];
     NSString *url =webView.request.URL.absoluteString;

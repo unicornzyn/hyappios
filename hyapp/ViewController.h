@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <JavaScriptCore/JavaScriptCore.h>
-
+#import <MediaPlayer/MediaPlayer.h>
+#import "AppDelegate.h"
 @protocol JavascriptExports <JSExport>
 -(void)show;
 -(void)hide;
