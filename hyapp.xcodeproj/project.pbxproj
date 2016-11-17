@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040079B91DDDA514009E2EF2 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 040079B81DDDA514009E2EF2 /* loading.gif */; };
 		040D2A301D93C18E00B5BCCA /* ScanQrcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040D2A2E1D93C18E00B5BCCA /* ScanQrcodeViewController.m */; };
 		040D2A311D93C18E00B5BCCA /* ScanQrcodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040D2A2F1D93C18E00B5BCCA /* ScanQrcodeViewController.xib */; };
 		040D2A331D93C1CD00B5BCCA /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040D2A321D93C1CD00B5BCCA /* MobileCoreServices.framework */; };
@@ -25,10 +26,10 @@
 		0454E4041D86AA910078727A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0454E4031D86AA910078727A /* MBProgressHUD.m */; };
 		047E80471D9CBAF200423D0E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047E80461D9CBAF100423D0E /* JavaScriptCore.framework */; };
 		04E2CF211D96B4C00038CBBB /* UserGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2CF201D96B4C00038CBBB /* UserGuideViewController.m */; };
-		04E2CF251D990EC20038CBBB /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04E2CF241D990EC20038CBBB /* loading.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040079B81DDDA514009E2EF2 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		040D2A2D1D93C18E00B5BCCA /* ScanQrcodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanQrcodeViewController.h; sourceTree = "<group>"; };
 		040D2A2E1D93C18E00B5BCCA /* ScanQrcodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanQrcodeViewController.m; sourceTree = "<group>"; };
 		040D2A2F1D93C18E00B5BCCA /* ScanQrcodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScanQrcodeViewController.xib; sourceTree = "<group>"; };
@@ -55,7 +56,6 @@
 		047E80461D9CBAF100423D0E /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		04E2CF1F1D96B4C00038CBBB /* UserGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGuideViewController.h; sourceTree = "<group>"; };
 		04E2CF201D96B4C00038CBBB /* UserGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGuideViewController.m; sourceTree = "<group>"; };
-		04E2CF241D990EC20038CBBB /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = loading.gif; path = ../../../Downloads/loading.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +114,7 @@
 				0454E3E41D868E350078727A /* Supporting Files */,
 				04E2CF1F1D96B4C00038CBBB /* UserGuideViewController.h */,
 				04E2CF201D96B4C00038CBBB /* UserGuideViewController.m */,
-				04E2CF241D990EC20038CBBB /* loading.gif */,
+				040079B81DDDA514009E2EF2 /* loading.gif */,
 			);
 			path = hyapp;
 			sourceTree = "<group>";
@@ -201,7 +201,7 @@
 			files = (
 				0454E3F41D868E350078727A /* LaunchScreen.storyboard in Resources */,
 				040D2A311D93C18E00B5BCCA /* ScanQrcodeViewController.xib in Resources */,
-				04E2CF251D990EC20038CBBB /* loading.gif in Resources */,
+				040079B91DDDA514009E2EF2 /* loading.gif in Resources */,
 				0454E3F11D868E350078727A /* Assets.xcassets in Resources */,
 				0454E3EF1D868E350078727A /* Main.storyboard in Resources */,
 			);
