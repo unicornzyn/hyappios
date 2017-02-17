@@ -56,7 +56,8 @@
     
     timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(timerAction:) userInfo:nil repeats:NO];
     */
-    website=@"http://zshy.91huayi.com/";
+    //website=@"http://zshy.91huayi.com/";
+    website=@"http://cg.91huayi.net/";
     websitescan=@"http://app.kjpt.91huayi.com/";
     self.view.backgroundColor=[UIColor whiteColor];
     //读取gif数据
