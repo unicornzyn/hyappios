@@ -16,6 +16,11 @@
 		040D2A391D93C1EC00B5BCCA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040D2A381D93C1EC00B5BCCA /* CFNetwork.framework */; };
 		040D2A3B1D93C1F900B5BCCA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040D2A3A1D93C1F900B5BCCA /* CoreGraphics.framework */; };
 		040D2A3D1D93C20400B5BCCA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040D2A3C1D93C20400B5BCCA /* UIKit.framework */; };
+		043B2FE51E5E80E90032A43F /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 043B2FE41E5E80E90032A43F /* libWeChatSDK.a */; };
+		043B2FE71E5E89190032A43F /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 043B2FE61E5E89190032A43F /* libsqlite3.0.tbd */; };
+		043B2FE91E5E89260032A43F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 043B2FE81E5E89260032A43F /* libz.tbd */; };
+		043B2FEB1E5E895B0032A43F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043B2FEA1E5E895B0032A43F /* CoreTelephony.framework */; };
+		043B2FED1E5ECDB50032A43F /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 043B2FEC1E5ECDB50032A43F /* libc++.tbd */; };
 		0454E3E61D868E350078727A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0454E3E51D868E350078727A /* main.m */; };
 		0454E3E91D868E350078727A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0454E3E81D868E350078727A /* AppDelegate.m */; };
 		0454E3EC1D868E350078727A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0454E3EB1D868E350078727A /* ViewController.m */; };
@@ -39,6 +44,14 @@
 		040D2A381D93C1EC00B5BCCA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		040D2A3A1D93C1F900B5BCCA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		040D2A3C1D93C20400B5BCCA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		043B2FE11E5E80A20032A43F /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		043B2FE21E5E80A20032A43F /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		043B2FE31E5E80A20032A43F /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		043B2FE41E5E80E90032A43F /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWeChatSDK.a; path = hyapp/libWeChatSDK.a; sourceTree = "<group>"; };
+		043B2FE61E5E89190032A43F /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		043B2FE81E5E89260032A43F /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		043B2FEA1E5E895B0032A43F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		043B2FEC1E5ECDB50032A43F /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		0454E3E11D868E350078727A /* hyapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hyapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0454E3E51D868E350078727A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0454E3E71D868E350078727A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -63,6 +76,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				043B2FED1E5ECDB50032A43F /* libc++.tbd in Frameworks */,
+				043B2FEB1E5E895B0032A43F /* CoreTelephony.framework in Frameworks */,
+				043B2FE91E5E89260032A43F /* libz.tbd in Frameworks */,
+				043B2FE71E5E89190032A43F /* libsqlite3.0.tbd in Frameworks */,
+				043B2FE51E5E80E90032A43F /* libWeChatSDK.a in Frameworks */,
 				047E80471D9CBAF200423D0E /* JavaScriptCore.framework in Frameworks */,
 				040D2A3D1D93C20400B5BCCA /* UIKit.framework in Frameworks */,
 				040D2A3B1D93C1F900B5BCCA /* CoreGraphics.framework in Frameworks */,
@@ -96,6 +114,9 @@
 		0454E3E31D868E350078727A /* hyapp */ = {
 			isa = PBXGroup;
 			children = (
+				043B2FE11E5E80A20032A43F /* WechatAuthSDK.h */,
+				043B2FE21E5E80A20032A43F /* WXApi.h */,
+				043B2FE31E5E80A20032A43F /* WXApiObject.h */,
 				040D2A2D1D93C18E00B5BCCA /* ScanQrcodeViewController.h */,
 				040D2A2E1D93C18E00B5BCCA /* ScanQrcodeViewController.m */,
 				040D2A2F1D93C18E00B5BCCA /* ScanQrcodeViewController.xib */,
@@ -130,6 +151,11 @@
 		047E80451D9CBAF000423D0E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				043B2FEC1E5ECDB50032A43F /* libc++.tbd */,
+				043B2FEA1E5E895B0032A43F /* CoreTelephony.framework */,
+				043B2FE81E5E89260032A43F /* libz.tbd */,
+				043B2FE61E5E89190032A43F /* libsqlite3.0.tbd */,
+				043B2FE41E5E80E90032A43F /* libWeChatSDK.a */,
 				040D2A3C1D93C20400B5BCCA /* UIKit.framework */,
 				040D2A3A1D93C1F900B5BCCA /* CoreGraphics.framework */,
 				040D2A381D93C1EC00B5BCCA /* CFNetwork.framework */,
@@ -341,8 +367,14 @@
 				INFOPLIST_FILE = hyapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/hyapp",
+				);
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.91huayi.HuaYiExam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -355,8 +387,14 @@
 				INFOPLIST_FILE = hyapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/hyapp",
+				);
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.91huayi.HuaYiExam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

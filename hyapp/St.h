@@ -18,5 +18,5 @@ typedef void (^AjaxErrorBlock)(NSError *data);                  //ajax失败的�
 
 +(void)promptInformation:(NSString *)infoStr ShowViewContent:(UIView *)showView viewTime:(int)viewTime;
 
-
++(NSMutableDictionary *)getURLParameters:(NSString *)url;
 @end

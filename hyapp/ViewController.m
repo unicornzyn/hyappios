@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "ScanQrcodeViewController.h"
 #import "St.h"
+#import "WXApi.h"
 
 @interface ViewController (){
     //UIView *view;
@@ -17,8 +18,10 @@
     UIWebView *loadingview;
     NSString *website;
     NSString *websitescan;
+    NSString *websitewxpay;
     AppDelegate *_appDelegate;
     NSInteger showcc;
+    NSString *returnurl;
 }
 @end
 
@@ -42,7 +45,7 @@
     [buttonIndex setTitleColor:[St colorWithHexString:@"#FFFFFF"] forState:UIControlStateNormal];
     [buttonIndex addTarget:self action:@selector(buttonIndexAction:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:buttonIndex];
-    
+
     UIButton *buttonLogin =[UIButton buttonWithType:UIButtonTypeCustom];
     buttonLogin.frame= CGRectMake((self.view.frame.size.width-80)/2, self.view.frame.size.height-120, 80, 30);
     buttonLogin.backgroundColor=[St colorWithHexString:@"#AAAAAA"];
@@ -56,9 +59,16 @@
     
     timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(timerAction:) userInfo:nil repeats:NO];
     */
-    //website=@"http://zshy.91huayi.com/";
-    website=@"http://cg.91huayi.net/";
+    website=@"http://zshy.91huayi.com/";
     websitescan=@"http://app.kjpt.91huayi.com/";
+    websitewxpay=@"http://pay.91huayi.com/";
+    //website=@"http://zshytest.91huayi.net/";
+    //websitescan=@"http://app.kjpt.91huayi.com/";
+    //websitewxpay=@"http://zhifucme.91huayi.net/";
+    
+    //发送版本到服务器
+    [self sendversion];
+    
     self.view.backgroundColor=[UIColor whiteColor];
     //读取gif数据
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"loading" ofType:@"gif"];
@@ -80,7 +90,6 @@
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent": @"Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E230 Safari/601.1"}];
     
     NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%@m/index.html",website]];
-    //NSURL *url = [[NSURL alloc]initWithString:@"http://z.puddingz.com/t.html"];
     NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
     [request setTimeoutInterval:10];
     [iwebview loadRequest:request];
@@ -94,6 +103,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterFullscreenScreen:) name:UIWindowDidBecomeVisibleNotification object:nil];
     //将要退出全屏的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willExitFullscreenScreen:) name:UIWindowDidBecomeHiddenNotification object:nil];
+    //微信支付回调的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wxpayoff:) name:@"Notification_wxpayoff" object:nil];
 }
 //将要进入全屏
 -(void)willEnterFullscreenScreen:(NSNotification *)notification{
@@ -136,6 +147,7 @@
     [loadingview setHidden:YES];
     [webView setHidden:NO];
     NSString *url =webView.request.URL.absoluteString;
+    NSLog(@"==>%@",url);
     if([url hasPrefix:[NSString stringWithFormat:@"%@AppScan.aspx",websitescan]]){
         //扫描二维码
         ScanQrcodeViewController *scan = [[ScanQrcodeViewController alloc]init];
@@ -144,9 +156,35 @@
         NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%@GetAppIdReceive.aspx?para=%@",websitescan,[self getAppId]]];
         NSMutableURLRequest * request=[NSMutableURLRequest requestWithURL:url];
         [webView loadRequest:request];
+    }else if([url hasPrefix:[NSString stringWithFormat:@"%@wx_pay.aspx",websitewxpay]]){
+        NSMutableDictionary *dict = [St getURLParameters:url];
+        if(dict != nil){
+            NSMutableString *stamp = [dict objectForKey:@"timestamp"];
+            PayReq *req = [[PayReq alloc]init];
+            req.partnerId = [dict objectForKey:@"partnerid"];
+            req.prepayId = [dict objectForKey:@"prepayid"];
+            req.nonceStr = [dict objectForKey:@"noncestr"];
+            req.timeStamp = stamp.intValue;
+            req.package = [dict objectForKey:@"package"];
+            req.sign = [dict objectForKey:@"sign"];
+            returnurl = [dict objectForKey:@"return_url"];
+            NSString *error_backurl = [dict objectForKey:@"error_backurl"];
+            if([WXApi isWXAppInstalled]){
+                BOOL tt = [WXApi sendReq:req];
+                NSLog(@"==>%d",tt);
+            }else{
+                NSLog(@"==>未安装微信");
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"系统提示" message:@"请先安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [alert show];
+                
+                NSURL *url2 = [[NSURL alloc]initWithString:error_backurl];
+                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url2];
+                [iwebview loadRequest:request];
 
+            }
+            
+        }
     }
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -191,6 +229,15 @@
         [iwebview setHidden:NO];
     });
 }
+
+-(void)wxpayoff:(NSNotification *)notification{
+    NSURL *url = [[NSURL alloc]initWithString:returnurl];
+    
+    NSMutableURLRequest * request=[NSMutableURLRequest requestWithURL:url];
+    
+    [iwebview loadRequest:request];
+}
+
 /*
 -(void)buttonIndexAction:(id)sender{
     [timer invalidate];
@@ -218,6 +265,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)sendversion{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@Home/ios_version?version=1&flag=1",website]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5];
+    [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
 @end
