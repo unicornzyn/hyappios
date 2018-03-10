@@ -10,6 +10,14 @@
 #import "ScanQrcodeViewController.h"
 #import "St.h"
 #import "WXApi.h"
+#import "SAMKeychain.h"
+#import "JPUSHService.h"
+#import "LivenessViewController.h"
+#import "LivingConfigModel.h"
+#import "IDLFaceSDK/IDLFaceSDK.h"
+#import "FaceParameterConfig.h"
+#import "HYConfig.h"
+#import "DetectionViewController.h"
 
 @interface ViewController (){
     //UIView *view;
@@ -19,9 +27,12 @@
     NSString *website;
     NSString *websitescan;
     NSString *websitewxpay;
+    NSString *pushtagurl;
     AppDelegate *_appDelegate;
     NSInteger showcc;
     NSString *returnurl;
+    NSMutableData *responseData;
+    NSString *appid;
 }
 @end
 
@@ -29,42 +40,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    /*
-    view = [[UIView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.height)];
-    UIImage *img = [UIImage imageNamed:@"yidao_bg_02"];
-    UIImageView *imgview = [[UIImageView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.height)];
-    [imgview setImage:img];
-    [view addSubview:imgview];
     
-    UIButton *buttonIndex =[UIButton buttonWithType:UIButtonTypeCustom];
-    buttonIndex.frame= CGRectMake((self.view.frame.size.width-80)/2, self.view.frame.size.height-165, 80, 30);
-    buttonIndex.backgroundColor=[St colorWithHexString:@"#AAAAAA"];
-    buttonIndex.layer.cornerRadius=4;
-    [buttonIndex setTitle:@"跳转首页" forState:UIControlStateNormal];
-    [buttonIndex setTitleColor:[St colorWithHexString:@"#FFFFFF"] forState:UIControlStateNormal];
-    [buttonIndex addTarget:self action:@selector(buttonIndexAction:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:buttonIndex];
-
-    UIButton *buttonLogin =[UIButton buttonWithType:UIButtonTypeCustom];
-    buttonLogin.frame= CGRectMake((self.view.frame.size.width-80)/2, self.view.frame.size.height-120, 80, 30);
-    buttonLogin.backgroundColor=[St colorWithHexString:@"#AAAAAA"];
-    buttonLogin.layer.cornerRadius=4;
-    [buttonLogin setTitle:@"登录" forState:UIControlStateNormal];
-    [buttonLogin setTitleColor:[St colorWithHexString:@"#FFFFFF"] forState:UIControlStateNormal];
-    [buttonLogin addTarget:self action:@selector(buttonLoginAction:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:buttonLogin];
+    website=WEB_SITE;
+    websitescan=WEB_SITE_SCAN;
+    websitewxpay=WEB_SITE_WXPAY;
     
-    [self.view addSubview:view];
-    
-    timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(timerAction:) userInfo:nil repeats:NO];
-    */
-    website=@"http://zshy.91huayi.com/";
-    websitescan=@"http://app.kjpt.91huayi.com/";
-    websitewxpay=@"http://pay.91huayi.com/";
-    //website=@"http://zshytest.91huayi.net/";
-    //websitescan=@"http://app.kjpt.91huayi.com/";
-    //websitewxpay=@"http://zhifucme.91huayi.net/";
+    pushtagurl=[NSString stringWithFormat:@"%@Account/tagTest/",website];
     
     //发送版本到服务器
     [self sendversion];
@@ -88,8 +69,12 @@
     iwebview = [[UIWebView alloc]initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height-20)];
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent": @"Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E230 Safari/601.1"}];
+    appid=[self getAppId];
     
-    NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%@m/index.html",website]];
+    NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%@Home/ios?appid=%@",website,appid]];
+    if(self.topageparam.length>0){
+        url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%@Home/ToProject?mykey=%@",website,self.topageparam]];
+    }
     NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url];
     [request setTimeoutInterval:10];
     [iwebview loadRequest:request];
@@ -105,6 +90,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willExitFullscreenScreen:) name:UIWindowDidBecomeHiddenNotification object:nil];
     //微信支付回调的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wxpayoff:) name:@"Notification_wxpayoff" object:nil];
+    
+    //极光推送注册别名和标签
+    [self setJPushTagsAndAlias:appid];
 }
 //将要进入全屏
 -(void)willEnterFullscreenScreen:(NSNotification *)notification{
@@ -129,10 +117,22 @@
 }
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     NSLog(@"mylog %@",[error debugDescription]);
+    /*
     if(error.code==-1009){
+        
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"系统提示" message:@"数据加载失败,请检查网络状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alert show];
     }
+    */
+    if(error.code==-1009){
+        NSString *homeurl = [NSString stringWithFormat:@"%@Home/ios?appid=%@",website,appid];
+        NSDictionary *userinfo  = [error userInfo];
+        NSString *errorHtml = [NSString stringWithFormat:@"<html><body><center style='padding:10px;'><h1>%@</h1><br /></br /></br><p><a href='%@'>返回首页</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='%@'>重新加载</a></p></center></body></html>",[error localizedDescription],homeurl,[userinfo objectForKey:@"NSErrorFailingURLStringKey"]];
+        
+        [webView loadHTMLString:errorHtml baseURL:nil];
+    }
+    [loadingview setHidden:YES];
+    [webView setHidden:NO];
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView{
@@ -148,10 +148,46 @@
     [webView setHidden:NO];
     NSString *url =webView.request.URL.absoluteString;
     NSLog(@"==>%@",url);
-    if([url hasPrefix:[NSString stringWithFormat:@"%@AppScan.aspx",websitescan]]){
+    
+    if([url hasPrefix:[NSString stringWithFormat:@"%@AppScaningProj.aspx",websitescan]]){
         //扫描二维码
         ScanQrcodeViewController *scan = [[ScanQrcodeViewController alloc]init];
+        scan.source = @"AppScanProj";
         [self presentViewController:scan animated:YES completion:nil];
+        [webView goBack];
+    }else if([url hasPrefix:[NSString stringWithFormat:@"%@AppScanning.aspx",websitescan]]){
+        //二维码考勤
+        ScanQrcodeViewController *scan = [[ScanQrcodeViewController alloc]init];
+        scan.source = @"AppScanning";
+        [self presentViewController:scan animated:YES completion:nil];
+        [webView goBack];
+    }else if([url hasPrefix:[NSString stringWithFormat:@"%@face.html",website]]){ //人脸识别
+        NSMutableDictionary *dict = [St getURLParameters:url];
+        if(dict != nil){
+            //http://zshytest.91huayi.net/face.html?cardid=150430198611244135
+            //http://zshytest.91huayi.net/face.html
+            NSString *idnumber = [dict objectForKey:@"cardid"];
+            NSLog(@"idnumber1=%@",idnumber);
+            if(idnumber.length>0){
+                if ([[FaceSDKManager sharedInstance] canWork]) {
+                    NSString* licensePath = [[NSBundle mainBundle] pathForResource:FACE_LICENSE_NAME ofType:FACE_LICENSE_SUFFIX];
+                    [[FaceSDKManager sharedInstance] setLicenseID:FACE_LICENSE_ID andLocalLicenceFile:licensePath];
+                }
+                //LivenessViewController* lvc = [[LivenessViewController alloc] init];
+                //LivingConfigModel* model = [LivingConfigModel sharedInstance];
+                //[lvc livenesswithList:model.liveActionArray order:model.isByOrder numberOfLiveness:1 idnumber:idnumber];
+                
+                DetectionViewController *lvc = [[DetectionViewController alloc] init];
+                lvc.cardid = idnumber;
+                UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:lvc];
+                navi.navigationBarHidden = true;
+                [self presentViewController:navi animated:YES completion:nil];
+            }else{
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"系统提示" message:@"未获取到身份证号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [alert show];
+            }
+        }
+        [webView goBack];
     }else if([url hasPrefix:[NSString stringWithFormat:@"%@GetAppId.aspx",websitescan]]){
         NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%@GetAppIdReceive.aspx?para=%@",websitescan,[self getAppId]]];
         NSMutableURLRequest * request=[NSMutableURLRequest requestWithURL:url];
@@ -193,21 +229,31 @@
 }
 -(void)ncmethod:(NSNotification*)sender{
     NSString *result=[sender.userInfo objectForKey:@"result"];
+    NSString *source = [sender.userInfo objectForKey:@"source"];
     if(![result isEqualToString:@""]){
         NSString *encodingresult= (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
                                                                                                
                                                                                                (__bridge CFStringRef)result,NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]",kCFStringEncodingUTF8);
-        NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%@AppScanReceive.aspx?para=%@",websitescan,encodingresult]];
+        NSString *backurl = @"AppScanReceive.aspx";
+        if([source isEqualToString:@"AppScanProj"]){
+            backurl = @"AppScanProjValue.aspx";
+        }else if([source isEqualToString:@"BaiduAI"] || [source isEqualToString:@"AppScanning"]){
+            backurl = @"AppScanReceive.aspx";
+        }
+        NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%@%@?para=%@",websitescan,backurl,encodingresult]];
         NSMutableURLRequest * request=[NSMutableURLRequest requestWithURL:url];
         [iwebview loadRequest:request];
     }else{
+        /*
         NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%@AppScanning.aspx",websitescan]];
         NSMutableURLRequest * request=[NSMutableURLRequest requestWithURL:url];
         [iwebview loadRequest:request];
+         */
     }
 }
 
 -(NSString *)getAppId{
+    /*
     NSString *strUUID=[[NSUserDefaults standardUserDefaults] stringForKey:@"hyuuid"];
     if(strUUID==nil||strUUID==NULL||[strUUID isEqualToString:@""]){
         CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
@@ -215,6 +261,18 @@
         [[NSUserDefaults standardUserDefaults] setValue:strUUID forKey:@"hyuuid"];
     }
     return strUUID;
+    */
+    
+    NSString * currentDeviceUUIDStr = [SAMKeychain passwordForService:@" "account:@"uuid"];
+    if (currentDeviceUUIDStr == nil || [currentDeviceUUIDStr isEqualToString:@""])
+    {
+        NSUUID * currentDeviceUUID  = [UIDevice currentDevice].identifierForVendor;
+        currentDeviceUUIDStr = currentDeviceUUID.UUIDString;
+        currentDeviceUUIDStr = [currentDeviceUUIDStr stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        currentDeviceUUIDStr = [currentDeviceUUIDStr lowercaseString];
+        [SAMKeychain setPassword: currentDeviceUUIDStr forService:@" "account:@"uuid"];
+    }
+    return currentDeviceUUIDStr;
 }
 
 -(void)show{
@@ -268,9 +326,52 @@
 }
 
 -(void)sendversion{
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@Home/ios_version?version=1&flag=1",website]];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    //NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];//app版本号 Version
+    NSString *build = [infoDictionary objectForKey:@"CFBundleVersion"];//app的build号
+    //NSLog(@"版本号:%@\nbuild号:%@\n",version,build);
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@Home/ios_version?version=%@&flag=1",website,build]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5];
     [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
+-(void)setJPushTagsAndAlias:(NSString *)appid{
+    [JPUSHService setAlias:appid completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+        NSLog(@"jpush setAlias iResCode:%zd",iResCode);
+    } seq:1];
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",pushtagurl,appid]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    if(responseData == nil){
+        responseData = [[NSMutableData alloc]init];
+    }
+    [responseData appendData:data];
+}
+// 当服务器返回所有数据时触发, 数据返回完毕
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection{
+    if([connection.currentRequest.URL.absoluteString hasPrefix:pushtagurl]){
+        if(responseData!= nil){
+            NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+            if([dict isKindOfClass:[NSDictionary class]]){
+                NSString *str = [dict objectForKey:@"data"];
+                if(str.length>0){
+                    NSArray *arr = [str componentsSeparatedByString:@","];
+                    NSSet *set = [NSSet setWithArray:arr];
+                    [JPUSHService setTags:set completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
+                        NSLog(@"jpush setTags iResCode:%zd",iResCode);
+                    } seq:2];
+                }else{
+                    [JPUSHService cleanTags:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
+                         NSLog(@"jpush setTags iResCode:%zd",iResCode);
+                    } seq:3];
+                }
+            }
+        }
+    }
+}
 @end

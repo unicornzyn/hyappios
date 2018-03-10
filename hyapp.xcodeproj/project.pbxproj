@@ -29,8 +29,33 @@
 		0454E3F41D868E350078727A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0454E3F21D868E350078727A /* LaunchScreen.storyboard */; };
 		0454E4011D86A8BA0078727A /* St.m in Sources */ = {isa = PBXBuildFile; fileRef = 0454E4001D86A8BA0078727A /* St.m */; };
 		0454E4041D86AA910078727A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0454E4031D86AA910078727A /* MBProgressHUD.m */; };
+		045801A41F39B97800EF2FD6 /* SAMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 045801A31F39B97800EF2FD6 /* SAMKeychain.m */; };
+		045801A71F39B99700EF2FD6 /* SAMKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 045801A61F39B99700EF2FD6 /* SAMKeychainQuery.m */; };
+		045B6FAA1F8A19D9008C0F46 /* jcore-ios-1.1.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 045B6FA71F8A19D9008C0F46 /* jcore-ios-1.1.5.a */; };
+		045B6FAB1F8A19D9008C0F46 /* jpush-ios-3.0.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 045B6FA81F8A19D9008C0F46 /* jpush-ios-3.0.6.a */; };
+		045B6FAD1F8A1A27008C0F46 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045B6FAC1F8A1A27008C0F46 /* CoreFoundation.framework */; };
+		045B6FAF1F8A1A42008C0F46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045B6FAE1F8A1A42008C0F46 /* Foundation.framework */; };
+		045B6FB11F8A1A6A008C0F46 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045B6FB01F8A1A6A008C0F46 /* UserNotifications.framework */; };
+		045B6FB31F8A1A82008C0F46 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 045B6FB21F8A1A82008C0F46 /* libresolv.tbd */; };
+		0470AC72201C49CD0051E821 /* IDLFaceSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0470AC71201C49CD0051E821 /* IDLFaceSDK.framework */; };
+		0470AC76201C4A160051E821 /* com.baidu.idl.face.faceSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0470AC73201C4A160051E821 /* com.baidu.idl.face.faceSDK.bundle */; };
+		0470AC77201C4A160051E821 /* com.baidu.idl.face.model.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0470AC74201C4A160051E821 /* com.baidu.idl.face.model.bundle */; };
+		0470AC78201C4A160051E821 /* idl-license.face-ios in Resources */ = {isa = PBXBuildFile; fileRef = 0470AC75201C4A160051E821 /* idl-license.face-ios */; };
+		0470AC91201C4F4C0051E821 /* DetectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470AC7C201C4F4C0051E821 /* DetectionViewController.m */; };
+		0470AC92201C4F4C0051E821 /* LivenessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470AC7D201C4F4C0051E821 /* LivenessViewController.m */; };
+		0470AC93201C4F4C0051E821 /* FaceBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470AC7F201C4F4C0051E821 /* FaceBaseViewController.m */; };
+		0470AC94201C4F4C0051E821 /* RemindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470AC80201C4F4C0051E821 /* RemindView.m */; };
+		0470AC95201C4F4C0051E821 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470AC81201C4F4C0051E821 /* CircleView.m */; };
+		0470AC96201C4F4C0051E821 /* LivingConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470AC84201C4F4C0051E821 /* LivingConfigViewController.m */; };
+		0470AC97201C4F4C0051E821 /* LivingConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470AC89201C4F4C0051E821 /* LivingConfigModel.m */; };
+		0470AC98201C4F4C0051E821 /* ImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470AC8C201C4F4C0051E821 /* ImageUtils.m */; };
+		0470AC99201C4F4C0051E821 /* VideoCaptureDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470AC90201C4F4C0051E821 /* VideoCaptureDevice.m */; };
 		047E80471D9CBAF200423D0E /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047E80461D9CBAF100423D0E /* JavaScriptCore.framework */; };
+		04D1FCAA201C60A400C37835 /* NetAccessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D1FCA3201C60A400C37835 /* NetAccessModel.m */; };
+		04D1FCAB201C60A400C37835 /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D1FCA4201C60A400C37835 /* NetManager.m */; };
+		04D1FCAC201C60A400C37835 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D1FCA8201C60A400C37835 /* NSString+Additions.m */; };
 		04E2CF211D96B4C00038CBBB /* UserGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2CF201D96B4C00038CBBB /* UserGuideViewController.m */; };
+		D56DF520C3F766C918474DAB /* libPods-hyapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F96608662DD4864345ED102 /* libPods-hyapp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,9 +91,54 @@
 		0454E4001D86A8BA0078727A /* St.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = St.m; sourceTree = "<group>"; };
 		0454E4021D86AA910078727A /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		0454E4031D86AA910078727A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		045801A21F39B95F00EF2FD6 /* SAMKeychain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMKeychain.h; sourceTree = "<group>"; };
+		045801A31F39B97800EF2FD6 /* SAMKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMKeychain.m; sourceTree = "<group>"; };
+		045801A51F39B98700EF2FD6 /* SAMKeychainQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMKeychainQuery.h; sourceTree = "<group>"; };
+		045801A61F39B99700EF2FD6 /* SAMKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMKeychainQuery.m; sourceTree = "<group>"; };
+		045B6FA71F8A19D9008C0F46 /* jcore-ios-1.1.5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-1.1.5.a"; sourceTree = "<group>"; };
+		045B6FA81F8A19D9008C0F46 /* jpush-ios-3.0.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.0.6.a"; sourceTree = "<group>"; };
+		045B6FA91F8A19D9008C0F46 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPUSHService.h; path = ../JPUSHService.h; sourceTree = "<group>"; };
+		045B6FAC1F8A1A27008C0F46 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		045B6FAE1F8A1A42008C0F46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		045B6FB01F8A1A6A008C0F46 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		045B6FB21F8A1A82008C0F46 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		045B6FB41F8A1AA0008C0F46 /* hyapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hyapp.entitlements; sourceTree = "<group>"; };
+		0470AC0B201C1BBD0051E821 /* FaceParameterConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaceParameterConfig.h; sourceTree = "<group>"; };
+		0470AC71201C49CD0051E821 /* IDLFaceSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDLFaceSDK.framework; path = FaceSDK/IDLFaceSDK.framework; sourceTree = "<group>"; };
+		0470AC73201C4A160051E821 /* com.baidu.idl.face.faceSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = com.baidu.idl.face.faceSDK.bundle; sourceTree = "<group>"; };
+		0470AC74201C4A160051E821 /* com.baidu.idl.face.model.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = com.baidu.idl.face.model.bundle; sourceTree = "<group>"; };
+		0470AC75201C4A160051E821 /* idl-license.face-ios */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "idl-license.face-ios"; sourceTree = "<group>"; };
+		0470AC7C201C4F4C0051E821 /* DetectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetectionViewController.m; sourceTree = "<group>"; };
+		0470AC7D201C4F4C0051E821 /* LivenessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LivenessViewController.m; sourceTree = "<group>"; };
+		0470AC7E201C4F4C0051E821 /* LivingConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LivingConfigViewController.h; sourceTree = "<group>"; };
+		0470AC7F201C4F4C0051E821 /* FaceBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceBaseViewController.m; sourceTree = "<group>"; };
+		0470AC80201C4F4C0051E821 /* RemindView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindView.m; sourceTree = "<group>"; };
+		0470AC81201C4F4C0051E821 /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
+		0470AC82201C4F4C0051E821 /* DetectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetectionViewController.h; sourceTree = "<group>"; };
+		0470AC83201C4F4C0051E821 /* FaceBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceBaseViewController.h; sourceTree = "<group>"; };
+		0470AC84201C4F4C0051E821 /* LivingConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LivingConfigViewController.m; sourceTree = "<group>"; };
+		0470AC85201C4F4C0051E821 /* LivenessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LivenessViewController.h; sourceTree = "<group>"; };
+		0470AC86201C4F4C0051E821 /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
+		0470AC87201C4F4C0051E821 /* RemindView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindView.h; sourceTree = "<group>"; };
+		0470AC89201C4F4C0051E821 /* LivingConfigModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LivingConfigModel.m; sourceTree = "<group>"; };
+		0470AC8A201C4F4C0051E821 /* LivingConfigModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LivingConfigModel.h; sourceTree = "<group>"; };
+		0470AC8C201C4F4C0051E821 /* ImageUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtils.m; sourceTree = "<group>"; };
+		0470AC8D201C4F4C0051E821 /* ImageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtils.h; sourceTree = "<group>"; };
+		0470AC8F201C4F4C0051E821 /* VideoCaptureDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCaptureDevice.h; sourceTree = "<group>"; };
+		0470AC90201C4F4C0051E821 /* VideoCaptureDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCaptureDevice.m; sourceTree = "<group>"; };
 		047E80461D9CBAF100423D0E /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		04D1FCA3201C60A400C37835 /* NetAccessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetAccessModel.m; sourceTree = "<group>"; };
+		04D1FCA4201C60A400C37835 /* NetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetManager.m; sourceTree = "<group>"; };
+		04D1FCA5201C60A400C37835 /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetManager.h; sourceTree = "<group>"; };
+		04D1FCA6201C60A400C37835 /* NetAccessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetAccessModel.h; sourceTree = "<group>"; };
+		04D1FCA8201C60A400C37835 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
+		04D1FCA9201C60A400C37835 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
+		04D1FCAD201C618E00C37835 /* HYConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYConfig.h; sourceTree = "<group>"; };
 		04E2CF1F1D96B4C00038CBBB /* UserGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGuideViewController.h; sourceTree = "<group>"; };
 		04E2CF201D96B4C00038CBBB /* UserGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGuideViewController.m; sourceTree = "<group>"; };
+		0F96608662DD4864345ED102 /* libPods-hyapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hyapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		74B12A120F77555CC3D1F92A /* Pods-hyapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hyapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hyapp/Pods-hyapp.debug.xcconfig"; sourceTree = "<group>"; };
+		7EE6B8BAA6082E6C20E62771 /* Pods-hyapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hyapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-hyapp/Pods-hyapp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,18 +146,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0470AC72201C49CD0051E821 /* IDLFaceSDK.framework in Frameworks */,
+				045B6FB31F8A1A82008C0F46 /* libresolv.tbd in Frameworks */,
+				045B6FB11F8A1A6A008C0F46 /* UserNotifications.framework in Frameworks */,
+				045B6FAF1F8A1A42008C0F46 /* Foundation.framework in Frameworks */,
+				045B6FAD1F8A1A27008C0F46 /* CoreFoundation.framework in Frameworks */,
+				045B6FAB1F8A19D9008C0F46 /* jpush-ios-3.0.6.a in Frameworks */,
 				043B2FED1E5ECDB50032A43F /* libc++.tbd in Frameworks */,
 				043B2FEB1E5E895B0032A43F /* CoreTelephony.framework in Frameworks */,
 				043B2FE91E5E89260032A43F /* libz.tbd in Frameworks */,
 				043B2FE71E5E89190032A43F /* libsqlite3.0.tbd in Frameworks */,
 				043B2FE51E5E80E90032A43F /* libWeChatSDK.a in Frameworks */,
 				047E80471D9CBAF200423D0E /* JavaScriptCore.framework in Frameworks */,
+				045B6FAA1F8A19D9008C0F46 /* jcore-ios-1.1.5.a in Frameworks */,
 				040D2A3D1D93C20400B5BCCA /* UIKit.framework in Frameworks */,
 				040D2A3B1D93C1F900B5BCCA /* CoreGraphics.framework in Frameworks */,
 				040D2A391D93C1EC00B5BCCA /* CFNetwork.framework in Frameworks */,
 				040D2A371D93C1E200B5BCCA /* Security.framework in Frameworks */,
 				040D2A351D93C1D900B5BCCA /* SystemConfiguration.framework in Frameworks */,
 				040D2A331D93C1CD00B5BCCA /* MobileCoreServices.framework in Frameworks */,
+				D56DF520C3F766C918474DAB /* libPods-hyapp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +178,7 @@
 				0454E3E31D868E350078727A /* hyapp */,
 				0454E3E21D868E350078727A /* Products */,
 				047E80451D9CBAF000423D0E /* Frameworks */,
+				6B1780749465759C6B903063 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,7 +193,14 @@
 		0454E3E31D868E350078727A /* hyapp */ = {
 			isa = PBXGroup;
 			children = (
+				04D1FCA2201C60A400C37835 /* NetManager */,
+				04D1FCA7201C60A400C37835 /* NSString */,
+				0470AC7A201C4A7D0051E821 /* FaceSDK */,
+				0470AC25201C28B80051E821 /* FaceUI */,
+				045B6FB41F8A1AA0008C0F46 /* hyapp.entitlements */,
+				045801A11F39B92F00EF2FD6 /* SAMKeychain */,
 				043B2FE11E5E80A20032A43F /* WechatAuthSDK.h */,
+				045B6FA91F8A19D9008C0F46 /* JPUSHService.h */,
 				043B2FE21E5E80A20032A43F /* WXApi.h */,
 				043B2FE31E5E80A20032A43F /* WXApiObject.h */,
 				040D2A2D1D93C18E00B5BCCA /* ScanQrcodeViewController.h */,
@@ -136,6 +222,8 @@
 				04E2CF1F1D96B4C00038CBBB /* UserGuideViewController.h */,
 				04E2CF201D96B4C00038CBBB /* UserGuideViewController.m */,
 				040079B81DDDA514009E2EF2 /* loading.gif */,
+				0470AC0B201C1BBD0051E821 /* FaceParameterConfig.h */,
+				04D1FCAD201C618E00C37835 /* HYConfig.h */,
 			);
 			path = hyapp;
 			sourceTree = "<group>";
@@ -148,13 +236,98 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		045801A11F39B92F00EF2FD6 /* SAMKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				045801A21F39B95F00EF2FD6 /* SAMKeychain.h */,
+				045801A31F39B97800EF2FD6 /* SAMKeychain.m */,
+				045801A51F39B98700EF2FD6 /* SAMKeychainQuery.h */,
+				045801A61F39B99700EF2FD6 /* SAMKeychainQuery.m */,
+			);
+			name = SAMKeychain;
+			sourceTree = "<group>";
+		};
+		0470AC25201C28B80051E821 /* FaceUI */ = {
+			isa = PBXGroup;
+			children = (
+				0470AC8E201C4F4C0051E821 /* Core */,
+				0470AC7B201C4F4C0051E821 /* Face */,
+				0470AC88201C4F4C0051E821 /* Model */,
+				0470AC8B201C4F4C0051E821 /* Utils */,
+			);
+			path = FaceUI;
+			sourceTree = "<group>";
+		};
+		0470AC7A201C4A7D0051E821 /* FaceSDK */ = {
+			isa = PBXGroup;
+			children = (
+				0470AC73201C4A160051E821 /* com.baidu.idl.face.faceSDK.bundle */,
+				0470AC74201C4A160051E821 /* com.baidu.idl.face.model.bundle */,
+				0470AC75201C4A160051E821 /* idl-license.face-ios */,
+			);
+			path = FaceSDK;
+			sourceTree = "<group>";
+		};
+		0470AC7B201C4F4C0051E821 /* Face */ = {
+			isa = PBXGroup;
+			children = (
+				0470AC7C201C4F4C0051E821 /* DetectionViewController.m */,
+				0470AC7D201C4F4C0051E821 /* LivenessViewController.m */,
+				0470AC7E201C4F4C0051E821 /* LivingConfigViewController.h */,
+				0470AC7F201C4F4C0051E821 /* FaceBaseViewController.m */,
+				0470AC80201C4F4C0051E821 /* RemindView.m */,
+				0470AC81201C4F4C0051E821 /* CircleView.m */,
+				0470AC82201C4F4C0051E821 /* DetectionViewController.h */,
+				0470AC83201C4F4C0051E821 /* FaceBaseViewController.h */,
+				0470AC84201C4F4C0051E821 /* LivingConfigViewController.m */,
+				0470AC85201C4F4C0051E821 /* LivenessViewController.h */,
+				0470AC86201C4F4C0051E821 /* CircleView.h */,
+				0470AC87201C4F4C0051E821 /* RemindView.h */,
+			);
+			path = Face;
+			sourceTree = "<group>";
+		};
+		0470AC88201C4F4C0051E821 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0470AC89201C4F4C0051E821 /* LivingConfigModel.m */,
+				0470AC8A201C4F4C0051E821 /* LivingConfigModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0470AC8B201C4F4C0051E821 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0470AC8C201C4F4C0051E821 /* ImageUtils.m */,
+				0470AC8D201C4F4C0051E821 /* ImageUtils.h */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		0470AC8E201C4F4C0051E821 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				0470AC8F201C4F4C0051E821 /* VideoCaptureDevice.h */,
+				0470AC90201C4F4C0051E821 /* VideoCaptureDevice.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		047E80451D9CBAF000423D0E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0470AC71201C49CD0051E821 /* IDLFaceSDK.framework */,
+				045B6FB21F8A1A82008C0F46 /* libresolv.tbd */,
+				045B6FB01F8A1A6A008C0F46 /* UserNotifications.framework */,
+				045B6FAE1F8A1A42008C0F46 /* Foundation.framework */,
+				045B6FAC1F8A1A27008C0F46 /* CoreFoundation.framework */,
 				043B2FEC1E5ECDB50032A43F /* libc++.tbd */,
 				043B2FEA1E5E895B0032A43F /* CoreTelephony.framework */,
 				043B2FE81E5E89260032A43F /* libz.tbd */,
 				043B2FE61E5E89190032A43F /* libsqlite3.0.tbd */,
+				045B6FA71F8A19D9008C0F46 /* jcore-ios-1.1.5.a */,
+				045B6FA81F8A19D9008C0F46 /* jpush-ios-3.0.6.a */,
 				043B2FE41E5E80E90032A43F /* libWeChatSDK.a */,
 				040D2A3C1D93C20400B5BCCA /* UIKit.framework */,
 				040D2A3A1D93C1F900B5BCCA /* CoreGraphics.framework */,
@@ -163,8 +336,38 @@
 				040D2A341D93C1D900B5BCCA /* SystemConfiguration.framework */,
 				040D2A321D93C1CD00B5BCCA /* MobileCoreServices.framework */,
 				047E80461D9CBAF100423D0E /* JavaScriptCore.framework */,
+				0F96608662DD4864345ED102 /* libPods-hyapp.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		04D1FCA2201C60A400C37835 /* NetManager */ = {
+			isa = PBXGroup;
+			children = (
+				04D1FCA3201C60A400C37835 /* NetAccessModel.m */,
+				04D1FCA4201C60A400C37835 /* NetManager.m */,
+				04D1FCA5201C60A400C37835 /* NetManager.h */,
+				04D1FCA6201C60A400C37835 /* NetAccessModel.h */,
+			);
+			path = NetManager;
+			sourceTree = "<group>";
+		};
+		04D1FCA7201C60A400C37835 /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				04D1FCA8201C60A400C37835 /* NSString+Additions.m */,
+				04D1FCA9201C60A400C37835 /* NSString+Additions.h */,
+			);
+			path = NSString;
+			sourceTree = "<group>";
+		};
+		6B1780749465759C6B903063 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				74B12A120F77555CC3D1F92A /* Pods-hyapp.debug.xcconfig */,
+				7EE6B8BAA6082E6C20E62771 /* Pods-hyapp.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,9 +377,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0454E3F81D868E350078727A /* Build configuration list for PBXNativeTarget "hyapp" */;
 			buildPhases = (
+				9CE5DB8D6FDCF15F1E691788 /* [CP] Check Pods Manifest.lock */,
 				0454E3DD1D868E350078727A /* Sources */,
 				0454E3DE1D868E350078727A /* Frameworks */,
 				0454E3DF1D868E350078727A /* Resources */,
+				2D94CC78676E71DC6E651ADD /* [CP] Embed Pods Frameworks */,
+				F5F8DF7FC8D1685C98AB6D1A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -199,6 +405,11 @@
 					0454E3E01D868E350078727A = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = M668QLE56J;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -226,14 +437,71 @@
 			buildActionMask = 2147483647;
 			files = (
 				0454E3F41D868E350078727A /* LaunchScreen.storyboard in Resources */,
+				0470AC77201C4A160051E821 /* com.baidu.idl.face.model.bundle in Resources */,
+				0470AC78201C4A160051E821 /* idl-license.face-ios in Resources */,
 				040D2A311D93C18E00B5BCCA /* ScanQrcodeViewController.xib in Resources */,
 				040079B91DDDA514009E2EF2 /* loading.gif in Resources */,
 				0454E3F11D868E350078727A /* Assets.xcassets in Resources */,
+				0470AC76201C4A160051E821 /* com.baidu.idl.face.faceSDK.bundle in Resources */,
 				0454E3EF1D868E350078727A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2D94CC78676E71DC6E651ADD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hyapp/Pods-hyapp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9CE5DB8D6FDCF15F1E691788 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hyapp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5F8DF7FC8D1685C98AB6D1A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-hyapp/Pods-hyapp-resources.sh",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hyapp/Pods-hyapp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0454E3DD1D868E350078727A /* Sources */ = {
@@ -241,11 +509,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				0454E3EC1D868E350078727A /* ViewController.m in Sources */,
+				04D1FCAB201C60A400C37835 /* NetManager.m in Sources */,
 				040D2A301D93C18E00B5BCCA /* ScanQrcodeViewController.m in Sources */,
 				0454E3E91D868E350078727A /* AppDelegate.m in Sources */,
+				0470AC98201C4F4C0051E821 /* ImageUtils.m in Sources */,
 				04E2CF211D96B4C00038CBBB /* UserGuideViewController.m in Sources */,
+				0470AC95201C4F4C0051E821 /* CircleView.m in Sources */,
+				04D1FCAA201C60A400C37835 /* NetAccessModel.m in Sources */,
 				0454E4041D86AA910078727A /* MBProgressHUD.m in Sources */,
+				0470AC92201C4F4C0051E821 /* LivenessViewController.m in Sources */,
+				0470AC99201C4F4C0051E821 /* VideoCaptureDevice.m in Sources */,
+				045801A71F39B99700EF2FD6 /* SAMKeychainQuery.m in Sources */,
+				0470AC96201C4F4C0051E821 /* LivingConfigViewController.m in Sources */,
+				045801A41F39B97800EF2FD6 /* SAMKeychain.m in Sources */,
+				04D1FCAC201C60A400C37835 /* NSString+Additions.m in Sources */,
+				0470AC93201C4F4C0051E821 /* FaceBaseViewController.m in Sources */,
 				0454E4011D86A8BA0078727A /* St.m in Sources */,
+				0470AC94201C4F4C0051E821 /* RemindView.m in Sources */,
+				0470AC91201C4F4C0051E821 /* DetectionViewController.m in Sources */,
+				0470AC97201C4F4C0051E821 /* LivingConfigModel.m in Sources */,
 				0454E3E61D868E350078727A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,18 +642,30 @@
 		};
 		0454E3F91D868E350078727A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74B12A120F77555CC3D1F92A /* Pods-hyapp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = hyapp/hyapp.entitlements;
 				DEVELOPMENT_TEAM = M668QLE56J;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/hyapp",
+					"$(PROJECT_DIR)/FaceSDK",
+				);
 				INFOPLIST_FILE = hyapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/hyapp",
+					"$(PROJECT_DIR)",
 				);
-				OTHER_LDFLAGS = "-all_load";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-all_load",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.91huayi.HuaYiExam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -380,18 +674,30 @@
 		};
 		0454E3FA1D868E350078727A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7EE6B8BAA6082E6C20E62771 /* Pods-hyapp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = hyapp/hyapp.entitlements;
 				DEVELOPMENT_TEAM = M668QLE56J;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/hyapp",
+					"$(PROJECT_DIR)/FaceSDK",
+				);
 				INFOPLIST_FILE = hyapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/hyapp",
+					"$(PROJECT_DIR)",
 				);
-				OTHER_LDFLAGS = "-all_load";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-all_load",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.91huayi.HuaYiExam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;

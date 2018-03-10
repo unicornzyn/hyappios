@@ -15,8 +15,7 @@
 -(void)hide;
 @end
 
-@interface ViewController : UIViewController<UIWebViewDelegate,JavascriptExports>
-
-
+@interface ViewController : UIViewController<UIWebViewDelegate,JavascriptExports,NSURLConnectionDataDelegate>
+@property(nonatomic,strong) NSString *topageparam;
 @end
 

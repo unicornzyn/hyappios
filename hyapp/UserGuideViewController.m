@@ -70,6 +70,7 @@
     if(!isstart&&currentOffset>=maximumOffset){
         isstart=true;
         ViewController *vc = [[ViewController alloc] init];
+        vc.topageparam=@"";
         self.view.window.rootViewController = vc;
     }
 }
