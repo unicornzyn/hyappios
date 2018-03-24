@@ -14,6 +14,7 @@
 
 @interface DetectionViewController ()
 {
+    NSTimer * timer; //倒计时
 }
 
 @property (nonatomic, readwrite, retain) UIView *animaView;
@@ -30,6 +31,36 @@
     self.animaView.alpha = 0;
     [self.view addSubview:self.animaView];
     
+    timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(animationCountDown) userInfo:nil repeats:YES];
+}
+
+-(void)animationCountDown{
+    if(--self.timeout>0){
+        [self.timeoutLabel setText:[NSString stringWithFormat:@"倒计时:%ld秒",(long)self.timeout]];
+    }else{
+        __weak typeof(self) weakSelf = self;
+        /*
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:@"认证超时" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* action = [UIAlertAction actionWithTitle:@"知道啦" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            //NSLog(@"知道啦");
+                    }];
+        [alert addAction:action];
+         */
+        UIViewController* fatherViewController = weakSelf.presentingViewController;
+        [weakSelf dismissViewControllerAnimated:YES completion:^{
+            //[fatherViewController presentViewController:alert animated:YES completion:nil];
+            [self timerStop];
+            ScanQrcodeViewController *scan = [[ScanQrcodeViewController alloc]init];
+            scan.source = @"AppScanning";
+            [fatherViewController presentViewController:scan animated:YES completion:nil];
+
+        }];
+    }
+}
+
+-(void)timerStop{
+    [timer invalidate];
+    timer = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -86,7 +117,7 @@
                     //[weakSelf closeAction];
                     if (images[@"bestImage"] != nil && [images[@"bestImage"] count] != 0) {
                         [self warningStatus:CommonStatus warning:@"正在验证身份，请稍侯..."]; //bestImageStr
-                        
+                        [self timerStop];
                         NSData* data = [[NSData alloc] initWithBase64EncodedString:[images[@"bestImage"] lastObject] options:NSDataBase64DecodingIgnoreUnknownCharacters];
                         UIImage* bestImage = [UIImage imageWithData:data];
                         NSLog(@"bestImage = %@",bestImage);
@@ -240,14 +271,15 @@
 {
     __weak typeof(self) weakSelf = self;
     
-    void (^showMsg)(NSString *)=^(NSString *msg){
+    void (^showMsg)(NSString *,BOOL)=^(NSString *msg,BOOL isrestartbaiduai){
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"系统提示" message:msg preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* action = [UIAlertAction actionWithTitle:@"知道啦" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            if([msg isEqualToString:@"验证未通过"]){
+            if(isrestartbaiduai){
                 UIViewController* fatherViewController = weakSelf.presentingViewController;
                 [weakSelf dismissViewControllerAnimated:YES completion:^{
                     DetectionViewController *lvc = [[DetectionViewController alloc]init];
                     lvc.cardid = self.cardid;
+                    lvc.timeout = self.timeout;
                     [fatherViewController presentViewController:lvc animated:YES completion:nil];
                 }];
             }
@@ -264,39 +296,32 @@
             if (error2 == nil){
                 NSDictionary* dict2 = [NSJSONSerialization JSONObjectWithData:resultObject2 options:NSJSONReadingAllowFragments error:nil];
                 if ([dict2[@"errorCode"] integerValue] == 1){ //错误
-                    showMsg([dict2[@"errMsg"] stringValue]);
+                    showMsg([dict2[@"errMsg"] stringValue],false);
                 }else if([dict2[@"errorCode"] integerValue] == 2){ //正在排队
                     NSString *aaa = [NSString stringWithFormat:@"前方排队人数%@，请耐心等待...",[dict2[@"errMsg"] stringValue]];
                     [self warningStatus:CommonStatus warning:aaa];
                     [self checkValid];
                 }else if([dict2[@"errorCode"] integerValue] == 3){ //正在排队
                     [self warningStatus:CommonStatus warning:@"正在处理，请稍侯..."];
+                    [self checkValid];
                 }else if([dict2[@"errorCode"] integerValue] == 4){ //验证通过
-                    [[NetAccessModel sharedInstance] getScanQRCodeTimeOut:^(NSError *error3, id resultObject3) {
-                        if(error3 == nil){
-                            NSDictionary* dict3 = [NSJSONSerialization JSONObjectWithData:resultObject3 options:NSJSONReadingAllowFragments error:nil];
-                            NSLog(@"scan qrcode timeout = %@",resultObject3);
-                            UIViewController* fatherViewController = weakSelf.presentingViewController;
-                            [weakSelf dismissViewControllerAnimated:YES completion:^{
-                                ScanQrcodeViewController *scan = [[ScanQrcodeViewController alloc]init];
-                                scan.source = @"BaiduAI";
-                                scan.cardid = self.cardid;
-                                scan.totalseconds = [dict3[@"timeout"] integerValue];
-                                [fatherViewController presentViewController:scan animated:YES completion:nil];
-                            }];
-                        }
+                    [weakSelf dismissViewControllerAnimated:YES completion:^{
+                        [[NSNotificationCenter defaultCenter]postNotificationName:@"go" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"facesuccess",@"result",self.parakey,@"parakey", nil]];
                     }];
-                    
                 }else if([dict2[@"errorCode"] integerValue] == 5){ //验证未通过
                     
-                    showMsg(@"验证未通过");
+                    showMsg([dict2[@"errMsg"] stringValue],true);
+                }else if([dict2[@"errorCode"] integerValue] == 6){ //还未处理完 继续请求
+                    [self checkValid];
+                }else if([dict2[@"errorCode"] integerValue] == 7){ //人脸识别失败
+                    showMsg(@"人脸识别失败",false);
                 }else{
                     
-                    showMsg(@"未知错误");
+                    showMsg(@"未知错误",false);
                 }
             }else{
                 //self.isLoop = false;
-                showMsg([error2 localizedDescription]);
+                showMsg([error2 localizedDescription],false);
                 
             }
         }];

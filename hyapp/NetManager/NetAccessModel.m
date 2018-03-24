@@ -34,9 +34,9 @@
                            @"cert_id":idnumber,
                            @"photo":imageStr
                            };
-    NSLog(@"%@",[NSString stringWithFormat:@"%@FaceRecognition/api/UploadPhotoClient",WEB_SITE_AI]);
+    NSLog(@"%@",[NSString stringWithFormat:@"%@api/UploadPhotoClient",WEB_SITE_AI]);
     NSLog(@"idnumber2=%@",idnumber);
-    [[NetManager sharedInstance] postDataWithPath:[NSString stringWithFormat:@"%@FaceRecognition/api/UploadPhotoClient",WEB_SITE_AI] parameters:parm completion:^(NSError *error, id resultObject) {
+    [[NetManager sharedInstance] postDataWithPath:[NSString stringWithFormat:@"%@api/UploadPhotoClient",WEB_SITE_AI] parameters:parm completion:^(NSError *error, id resultObject) {
         completionBlock(error,resultObject);
     }];
     
@@ -48,9 +48,8 @@
                            @"cert_id":idnumber,
                            @"photo_from_type":@"2"
                            };
-    NSLog(@"%@",[NSString stringWithFormat:@"%@FaceRecognition/api/QueryPhotoValidateAjax",WEB_SITE_AI]);
-    NSLog(@"idnumber3=%@",idnumber);
-    [[NetManager sharedInstance] getDataWithPath:[NSString stringWithFormat:@"%@FaceRecognition/api/QueryPhotoValidateAjax",WEB_SITE_AI] parameters:parm completion:^(NSError *error, id resultObject) {
+    NSLog(@"%@",[NSString stringWithFormat:@"%@api/QueryPhotoValidateAjax",WEB_SITE_AI]);
+    [[NetManager sharedInstance] getDataWithPath:[NSString stringWithFormat:@"%@api/QueryPhotoValidateAjax",WEB_SITE_AI] parameters:parm completion:^(NSError *error, id resultObject) {
         completionBlock(error,resultObject);
     }];
 }

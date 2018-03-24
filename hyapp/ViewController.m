@@ -18,6 +18,7 @@
 #import "FaceParameterConfig.h"
 #import "HYConfig.h"
 #import "DetectionViewController.h"
+#import "UploadPhotoViewController.h"
 
 @interface ViewController (){
     //UIView *view;
@@ -63,7 +64,7 @@
     //设置缩放模式
     loadingview.scalesPageToFit = YES;
     //用webView加载数据
-    [loadingview loadData:gifData MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
+    [loadingview loadData:gifData MIMEType:@"image/gif" textEncodingName:@"UTF-8" baseURL:nil];
     [self.view addSubview:loadingview];
     
     iwebview = [[UIWebView alloc]initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height-20)];
@@ -154,19 +155,21 @@
         ScanQrcodeViewController *scan = [[ScanQrcodeViewController alloc]init];
         scan.source = @"AppScanProj";
         [self presentViewController:scan animated:YES completion:nil];
-        [webView goBack];
+        [self goUrl:[NSString stringWithFormat:@"%@Index.htm",websitescan]];
     }else if([url hasPrefix:[NSString stringWithFormat:@"%@AppScanning.aspx",websitescan]]){
         //二维码考勤
         ScanQrcodeViewController *scan = [[ScanQrcodeViewController alloc]init];
         scan.source = @"AppScanning";
         [self presentViewController:scan animated:YES completion:nil];
-        [webView goBack];
+        [self goUrl:[NSString stringWithFormat:@"%@Index.htm",websitescan]];
     }else if([url hasPrefix:[NSString stringWithFormat:@"%@face.html",website]]){ //人脸识别
         NSMutableDictionary *dict = [St getURLParameters:url];
         if(dict != nil){
-            //http://zshytest.91huayi.net/face.html?cardid=150430198611244135
+            //http://zshytest.91huayi.net/face.html?152523197612299073&user_id=1000724149&timeout=300
             //http://zshytest.91huayi.net/face.html
             NSString *idnumber = [dict objectForKey:@"cardid"];
+            NSString *parakey = [dict objectForKey:@"parakey"];
+            NSInteger timeout = [[dict objectForKey:@"timeout"] intValue];
             NSLog(@"idnumber1=%@",idnumber);
             if(idnumber.length>0){
                 if ([[FaceSDKManager sharedInstance] canWork]) {
@@ -179,6 +182,8 @@
                 
                 DetectionViewController *lvc = [[DetectionViewController alloc] init];
                 lvc.cardid = idnumber;
+                lvc.timeout = timeout;
+                lvc.parakey = parakey;
                 UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:lvc];
                 navi.navigationBarHidden = true;
                 [self presentViewController:navi animated:YES completion:nil];
@@ -187,11 +192,31 @@
                 [alert show];
             }
         }
-        [webView goBack];
+       [self goUrl:[NSString stringWithFormat:@"%@Index.htm",websitescan]];
+    }else if([url hasPrefix:[NSString stringWithFormat:@"%@FaceRecognitionPhoto/api/CertUpload/",WEB_SITE_AI]]){ //人脸识别
+        /*
+         //时间不够 暂不做
+        NSMutableDictionary *dict = [St getURLParameters:url];
+        if(dict != nil){
+            NSString *token = [dict objectForKey:@"token"];
+            NSString *cert_id = [dict objectForKey:@"cert_id"];
+            NSString *parakey = [dict objectForKey:@"parakey"];
+            NSString *tip_msg = [dict objectForKey:@"tip_msg"];
+            
+            UploadPhotoViewController *lvc = [[UploadPhotoViewController alloc] init];
+            lvc.token = token;
+            lvc.cert_id = cert_id;
+            lvc.parakey = parakey;
+            lvc.tip_msg = tip_msg;
+            UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:lvc];
+            navi.navigationBarHidden = true;
+            [self presentViewController:navi animated:YES completion:nil];
+        }
+        [self goUrl:[NSString stringWithFormat:@"%@Index.htm",websitescan]];
+         */
     }else if([url hasPrefix:[NSString stringWithFormat:@"%@GetAppId.aspx",websitescan]]){
-        NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%@GetAppIdReceive.aspx?para=%@",websitescan,[self getAppId]]];
-        NSMutableURLRequest * request=[NSMutableURLRequest requestWithURL:url];
-        [webView loadRequest:request];
+        NSString *url = [NSString stringWithFormat:@"%@GetAppIdReceive.aspx?para=%@",websitescan,[self getAppId]];
+        [self goUrl:url];
     }else if([url hasPrefix:[NSString stringWithFormat:@"%@wx_pay.aspx",websitewxpay]]){
         NSMutableDictionary *dict = [St getURLParameters:url];
         if(dict != nil){
@@ -213,9 +238,7 @@
                 UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"系统提示" message:@"请先安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
                 [alert show];
                 
-                NSURL *url2 = [[NSURL alloc]initWithString:error_backurl];
-                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url2];
-                [iwebview loadRequest:request];
+                [self goUrl:error_backurl];
 
             }
             
@@ -227,10 +250,23 @@
     NSNotificationCenter *nc =[NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(ncmethod:) name:@"go" object:nil];
 }
+
+-(void)goUrl:(NSString *)returnurl{
+    NSURL *url = [[NSURL alloc]initWithString:returnurl];
+    
+    NSMutableURLRequest * request=[NSMutableURLRequest requestWithURL:url];
+    
+    [iwebview loadRequest:request];
+}
+
 -(void)ncmethod:(NSNotification*)sender{
     NSString *result=[sender.userInfo objectForKey:@"result"];
     NSString *source = [sender.userInfo objectForKey:@"source"];
-    if(![result isEqualToString:@""]){
+    if([result isEqualToString:@"facesuccess"]){
+        NSString *parakey = [sender.userInfo objectForKey:@"parakey"];
+        NSString *url = [NSString stringWithFormat:@"%@SaveScan.aspx?parakey=%@",websitescan,parakey];
+        [self goUrl:url];
+    }else if(![result isEqualToString:@""]){
         NSString *encodingresult= (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
                                                                                                
                                                                                                (__bridge CFStringRef)result,NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]",kCFStringEncodingUTF8);
@@ -240,9 +276,8 @@
         }else if([source isEqualToString:@"BaiduAI"] || [source isEqualToString:@"AppScanning"]){
             backurl = @"AppScanReceive.aspx";
         }
-        NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%@%@?para=%@",websitescan,backurl,encodingresult]];
-        NSMutableURLRequest * request=[NSMutableURLRequest requestWithURL:url];
-        [iwebview loadRequest:request];
+        NSString *url = [NSString stringWithFormat:@"%@%@?para=%@",websitescan,backurl,encodingresult];
+        [self goUrl:url];
     }else{
         /*
         NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"%@AppScanning.aspx",websitescan]];
@@ -294,6 +329,8 @@
     NSMutableURLRequest * request=[NSMutableURLRequest requestWithURL:url];
     
     [iwebview loadRequest:request];
+    
+    
 }
 
 /*

@@ -24,6 +24,10 @@ typedef enum : NSUInteger {
 @property (nonatomic, readwrite, assign) CGRect detectRect;
 @property (nonatomic, readwrite, retain) CircleView * circleView;
 @property (nonatomic, readwrite, retain) NSString * cardid;
+@property (nonatomic, readwrite, retain) NSString * parakey;
+@property NSInteger timeout;
+@property (nonatomic, readwrite, retain) UILabel * timeoutLabel;
+
 - (void)faceProcesss:(UIImage *)image;
 
 - (void)closeAction;

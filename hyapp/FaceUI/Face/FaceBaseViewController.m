@@ -25,6 +25,7 @@
 @property (nonatomic, readwrite, retain) UILabel * remindDetailLabel;
 @property (nonatomic, readwrite, retain) UIImageView * successImage;
 
+
 @end
 
 @implementation FaceBaseViewController
@@ -137,6 +138,13 @@
     self.remindDetailLabel.text = @"建议略微抬头";
     [self.view addSubview:self.remindDetailLabel];
     [self.remindDetailLabel setHidden:true];
+    
+    self.timeoutLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(circleRect)+50, ScreenWidth, 30)];
+    self.timeoutLabel.font = [UIFont systemFontOfSize:20];
+    self.timeoutLabel.textColor = [UIColor whiteColor];
+    self.timeoutLabel.textAlignment = NSTextAlignmentCenter;
+    self.timeoutLabel.text = [NSString stringWithFormat:@"倒计时:%ld秒",(long)self.timeout];
+    [self.view addSubview:self.timeoutLabel];
     
     // 监听重新返回APP
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onAppWillResignAction) name:UIApplicationWillResignActiveNotification object:nil];

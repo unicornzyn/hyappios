@@ -51,6 +51,8 @@
     
     _lastResult = YES;
     
+    self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    
     [self configView];
     
    
@@ -65,7 +67,7 @@
     
     if([self.source isEqualToString:@"BaiduAI"]){
         lbl2 = [[UILabel alloc]initWithFrame:CGRectMake(0, TOP-50, SCREEN_WIDTH, 20)];
-        [lbl2 setText:[NSString stringWithFormat:@"扫码倒计时:%qi秒",self.totalseconds]];
+        [lbl2 setText:[NSString stringWithFormat:@"扫码倒计时:%ld秒",self.totalseconds]];
         lbl2.textAlignment = NSTextAlignmentCenter;
         [lbl2 setTextColor:OutSideColor];
         [self.view addSubview:lbl2];
@@ -81,7 +83,7 @@
 
 -(void)animationCountDown{
     if(--self.totalseconds>0){
-        [lbl2 setText:[NSString stringWithFormat:@"扫码倒计时:%qi秒",self.totalseconds]];
+        [lbl2 setText:[NSString stringWithFormat:@"扫码倒计时:%ld秒",self.totalseconds]];
     }else{
         __weak typeof(self) weakSelf = self;
         UIViewController* fatherViewController = weakSelf.presentingViewController;
