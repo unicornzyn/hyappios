@@ -162,7 +162,7 @@
         scan.source = @"AppScanning";
         [self presentViewController:scan animated:YES completion:nil];
         [self goUrl:[NSString stringWithFormat:@"%@Index.htm",websitescan]];
-    }else if([url hasPrefix:[NSString stringWithFormat:@"%@face.html",website]]){ //人脸识别
+    }else if([url hasPrefix:[NSString stringWithFormat:@"%@face.html",WEB_SITE_FACE]]){ //人脸识别
         NSMutableDictionary *dict = [St getURLParameters:url];
         if(dict != nil){
             //http://zshytest.91huayi.net/face.html?152523197612299073&user_id=1000724149&timeout=300
